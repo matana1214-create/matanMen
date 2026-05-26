@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מתן-מן | מקצוען בבית, תמיד לשירותכם</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a; /* כחול עמוק - אמינות */
+            --secondary: #166534; /* ירוק זית עדין - מילואימניק */
+            --accent: #f59e0b; /* כתום-צהוב - עבודה ופעולה */
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --text-main: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+        }
+
+        /* לוגו צף */
+        #logo_div {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 60px;
+            height: 60px;
+            z-index: 1000;
+        }
+
+        #logo_img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #img_nose {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        /* באנר מילואימניק */
+        .miluim-badge {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1621905252507-b35239d33048?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary { background-color: var(--accent); color: #000; }
+        .btn-secondary { background-color: #25d366; color: white; }
+        
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 30px;
+            background: white;
+            margin: -40px auto 0;
+            position: relative;
+            z-index: 10;
+            width: 85%;
+            max-width: 1000px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 2rem; color: var(--primary); }
+        .stat-item p { font-size: 0.9rem; color: #64748b; }
+
+        /* Services Section */
+        section { padding: 80px 20px; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        .section-title .underline { width: 50px; height: 4px; background: var(--accent); margin: 0 auto; }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.4s;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover { 
+            border-color: var(--accent); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .service-card h3 { 
+            margin-bottom: 15px; 
+            font-size: 1.3rem; 
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card h3 i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .service-card ul { 
+            list-style: none; 
+            color: #64748b; 
+        }
+
+        .service-card li { 
+            margin-bottom: 10px; 
+            position: relative;
+            padding-right: 20px;
+            font-size: 0.95rem;
+        }
+
+        .service-card li::before {
+            content: "✓";
+            color: var(--secondary);
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .about-text { flex: 1.2; min-width: 300px; }
+        .about-image { 
+            flex: 0.8; 
+            min-width: 300px; 
+            height: 350px; 
+            position: relative;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        /* Contact Bar */
+        .contact-bar {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 850px;
+            margin: 40px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+/* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero { 
+                height: auto; 
+                padding: 100px 20px 60px 20px; /* נותן מרווח נשימה לכפתורים */
+            }
+            
+            .stats { 
+                flex-direction: column; 
+                gap: 20px; 
+                width: 90%; 
+                margin: 20px auto 0; /* שינוי: במקום מספר שלילי, נתנו מרווח חיובי רגיל */
+                transform: none; 
+            }
+            
+            .btn-group {
+                flex-direction: column; /* מבטיח שהכפתורים יהיו אחד מתחת לשני */
+                width: 100%;
+            }
+
+            .btn { 
+                width: 100%; 
+                justify-content: center; 
+            }
+
+            #logo_div { width: 50px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- לוגו -->
+    <div id="logo_div">
+        <img id="logo_img" src="לוגו עסק.png" alt="logo">
+    </div>
+
+    <!-- באנר עליון -->
+    <div class="miluim-badge">
+        <i class="fas fa-star"></i> עסק של מילואימניק - תומכים בעורף וגם בחזית <i class="fas fa-star"></i>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>הבית צריך תיקון?<br>אני בדרך.</h1>
+            <p>שירותי הנדי-מן מקצועיים בלוד והסביבה. משלב ידיים טובות, ציוד מתקדם ושירות בגובה העיניים.</p>
+            <div class="btn-group">
+                <a href="tel:0525322465" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> התקשרו עכשיו
+                </a>
+                <a href="https://wa.me/972525322465?text=שלום מתן, אשמח להצעת מחיר" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> הודעת ווטסאפ
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div id="stat_item" class="stats">
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>אמינות ושקיפות</p>
+        </div>
+        <div class="stat-item">
+            <h3>24/6</h3>
+            <p>זמינות גבוהה</p>
+        </div>
+        <div class="stat-item">
+            <h3>+4</h3>
+            <p>שנות ניסיון</p>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="about-flex">
+            <div class="about-text">
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 20px;">נעים מאוד, מתן.</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 20px; line-height: 1.6;">
+                    עם ידיים טובות והרבה ניסיון בתחזוקת הבית, אני מאמין ששירות טוב מתחיל בחיוך וממשיך בעבודה נקייה ומדויקת. 
+                    כמילואימניק, אני מביא איתי לכל עבודה ערכים של עמידה בזמנים, אחריות ומקצועיות ללא פשרות.
+                </p>
+                <p><strong>אני דואג להכל - מהבורג הכי קטן ועד פתרונות מורכבים.</strong></p>
+            </div>
+            <div class="about-image">
+                <img id="img_nose" src="תמונת נושא.jpeg" alt="מתן בעבודה">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" style="background: #f1f5f9;">
+        <div class="section-title">
+            <h2>השירותים שלי</h2>
+            <div class="underline"></div>
+        </div>
+        
+        <div class="services-container">
+            <!-- קטגוריה 1: התקנות ונגרות -->
+            <div class="service-card">
+                <h3><i class="fas fa-hammer"></i> התקנות ותלייה</h3>
+                <ul>
+                    <li>תליית טלוויזיות וזרועות</li>
+                    <li>מדפים, מראות ותמונות</li>
+                    <li>הרכבת רהיטים (איקאה וכדומה)</li>
+                    <li>וילונות מכל הסוגים</li>
+                </ul>
+            </div>
+
+            <!-- קטגוריה 2: צבע וגבס -->
+            <div class="service-card">
+                <h3><i class="fas fa-paint-roller"></i> צבע וגבס</h3>
+                <ul>
+                    <li>צביעת דירות וחדרים</li>
+                    <li>תיקוני שפכטל, רובה חורים וסדקים</li>
+                    <li>בניית קרניזים ומחיצות גבס</li>
+                    <li>צביעת דלתות ומשקופים</li>
+                </ul>
+            </div>
+
+            <!-- קטגוריה 3: חשמל ואינסטלציה -->
+            <div class="service-card">
+                <h3><i class="fas fa-tools"></i>חשמל ואינסטלציה</h3>
+                <ul>
+                    <li>החלפת גופי תאורה ומאווררים</li>
+                    <li>תיקון שקעים ומפסקים</li>
+                    <li>החלפת ברזים, סיפונים וניאגרות</li>
+                    <li>איטומים</li>
+                </ul>
+            </div>
+
+            <!-- קטגוריה 4: תחזוקה כללית -->
+            <div class="service-card">
+                <h3><i class="fas fa-shield-alt"></i> תחזוקה ומניעה</h3>
+                <ul>
+                    <li>חידוש והתקנת רשתות יונים</li>
+                    <li>החלפת רשתות זבובים</li>
+                    <li>שיפוץ רהיטים</li>
+                    <li>תיקונים קטנים "על הדרך"</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section>
+        <div class="section-title">
+            <h2>העבודות שלי</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="gallery-grid">
+            <img src="עבודה 1.jpeg" class="gallery-img" alt="עבודה 1">
+            <img src="התקנת גוף תאורה.jpeg" class="gallery-img" alt="עבודה 2">
+            <img src="התקנת מסילות.jpeg" class="gallery-img" alt="עבודה 3">
+            <img src="ששש.jpeg" class="gallery-img" alt="עבודה 4">
+        </div>
+    </section>
+
+    <!-- Contact Bar -->
+    <section id="contact">
+        <div class="contact-bar">
+            <h2 style="margin-bottom: 10px;">מוכנים להתחיל?</h2>
+            <p style="margin-bottom: 25px; color: #64748b;">שלחו לי תמונה של התקלה בווטסאפ וקבלו הצעת מחיר מהירה</p>
+            <div class="btn-group">
+                <a href="https://wa.me/972525322465?text=שלום מתן, אשמח להצעת מחיר" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> שלחו תמונה בווטסאפ
+                </a>
+                <a href="tel:0525322465" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> התקשרו: 052-5322465
+                </a>
+            </div>
+            <p style="margin-top: 25px; font-size: 0.9rem; color: #64748b;">
+                <i class="fas fa-map-marker-alt"></i> אזור שירות: לוד והסביבה | <i class="fas fa-calendar-check"></i> זמין 24/6
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>בונה רהיטים וגם אתרים ולכן כל הזכויות שמורות לי © 2026</p>
+        <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.7;">שירות אמין | עבודה נקייה | מחיר הוגן</p>
+    </footer>
+
+</body>
+</html>
