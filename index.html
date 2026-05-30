@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מתן-מן | מקצוען בבית, תמיד לשירותכם</title>
     
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -35,7 +34,7 @@
         /* לוגו צף */
         #logo_div {
             position: fixed;
-            top: 10px;
+            top: 30px;
             left: 10px;
             width: 60px;
             height: 60px;
@@ -245,6 +244,102 @@
             transition: 0.3s;
         }
 
+        /* Reviews Section - Slider Mode */
+        .slider-wrapper {
+            position: relative;
+            max-width: 750px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 10px 50px;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 10px 15px;
+        }
+
+        .review-card-compact {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-right: 4px solid var(--accent);
+            text-align: right;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .review-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* חיצי ניווט */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            padding: 10px;
+            z-index: 5;
+        }
+
+        .slider-btn:hover { opacity: 1; }
+        .prev-btn { right: 5px; }
+        .next-btn { left: 5px; }
+        
+        /* נקודות אינדיקציה */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active { background: var(--accent); }
+
         /* Contact Bar */
         .contact-bar {
             background: var(--white);
@@ -264,23 +359,23 @@
             text-align: center;
         }
 
-/* Mobile Adjustments */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .hero { 
                 height: auto; 
-                padding: 100px 20px 60px 20px; /* נותן מרווח נשימה לכפתורים */
+                padding: 100px 20px 60px 20px;
             }
             
             .stats { 
                 flex-direction: column; 
                 gap: 20px; 
                 width: 90%; 
-                margin: 20px auto 0; /* שינוי: במקום מספר שלילי, נתנו מרווח חיובי רגיל */
+                margin: 20px auto 0;
                 transform: none; 
             }
             
             .btn-group {
-                flex-direction: column; /* מבטיח שהכפתורים יהיו אחד מתחת לשני */
+                flex-direction: column;
                 width: 100%;
             }
 
@@ -290,22 +385,24 @@
             }
 
             #logo_div { width: 50px; height: 50px; }
+            
+            .slider-wrapper {
+                padding: 10px 15px;
+            }
+            .slider-btn { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- לוגו -->
     <div id="logo_div">
         <img id="logo_img" src="לוגו עסק.png" alt="logo">
     </div>
 
-    <!-- באנר עליון -->
     <div class="miluim-badge">
-        <i class="fas fa-star"></i> עסק של מילואימניק - תומכים בעורף וגם בחזית <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i> #עסק_מילואימניק - תומכים בעורף וגם בחזית <i class="fas fa-star"></i>
     </div>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
             <h1>הבית צריך תיקון?<br>אני בדרך.</h1>
@@ -321,7 +418,6 @@
         </div>
     </section>
 
-    <!-- Stats -->
     <div id="stat_item" class="stats">
         <div class="stat-item">
             <h3>100%</h3>
@@ -337,7 +433,6 @@
         </div>
     </div>
 
-    <!-- About -->
     <section id="about">
         <div class="about-flex">
             <div class="about-text">
@@ -354,7 +449,6 @@
         </div>
     </section>
 
-    <!-- Services -->
     <section id="services" style="background: #f1f5f9;">
         <div class="section-title">
             <h2>השירותים שלי</h2>
@@ -362,7 +456,6 @@
         </div>
         
         <div class="services-container">
-            <!-- קטגוריה 1: התקנות ונגרות -->
             <div class="service-card">
                 <h3><i class="fas fa-hammer"></i> התקנות ותלייה</h3>
                 <ul>
@@ -373,18 +466,16 @@
                 </ul>
             </div>
 
-            <!-- קטגוריה 2: צבע וגבס -->
             <div class="service-card">
                 <h3><i class="fas fa-paint-roller"></i> צבע וגבס</h3>
                 <ul>
                     <li>צביעת דירות וחדרים</li>
-                    <li>תיקוני שפכטל, רובה חורים וסדקים</li>
+                    <li>תיקוני שפכטל, רובה חורים, סדקים עובש ורטיבויות</li>
                     <li>בניית קרניזים ומחיצות גבס</li>
                     <li>צביעת דלתות ומשקופים</li>
                 </ul>
             </div>
 
-            <!-- קטגוריה 3: חשמל ואינסטלציה -->
             <div class="service-card">
                 <h3><i class="fas fa-tools"></i>חשמל ואינסטלציה</h3>
                 <ul>
@@ -395,7 +486,6 @@
                 </ul>
             </div>
 
-            <!-- קטגוריה 4: תחזוקה כללית -->
             <div class="service-card">
                 <h3><i class="fas fa-shield-alt"></i> תחזוקה ומניעה</h3>
                 <ul>
@@ -408,8 +498,7 @@
         </div>
     </section>
 
-    <!-- Gallery -->
-    <section>
+    <section id="gallery">
         <div class="section-title">
             <h2>העבודות שלי</h2>
             <div class="underline"></div>
@@ -422,7 +511,107 @@
         </div>
     </section>
 
-    <!-- Contact Bar -->
+    <section id="reviews" style="background: #ffffff; padding: 60px 20px;">
+        <div class="section-title" style="margin-bottom: 30px;">
+            <h2>לקוחות ממליצים</h2>
+            <div class="underline"></div>
+        </div>
+        
+        <div class="slider-wrapper">
+            <button class="slider-btn prev-btn" onclick="handleBtnClick(-1)"><i class="fas fa-chevron-right"></i></button>
+            
+            <div class="slider-container" id="slider">
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">אין על מתן!!! תלה מה שהיה צריך בזריזות, יסודיות ודיוק. יש על מי לסמוך👑👑</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> אופק דהן, לוד
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">ממליצים בחום על מתן, שסידר לנו בצורה יסודית ומקצועית את כל נושא הרשתות בבית, עזר בהתקנות שונות, והכול בחיוך, סבלנות ומהירות. לאורך כל הדרך הוא היה זמין, שירותי ומדויק... כיף לעבוד עם מישהו שגם מקצוען אמיתי וגם נותן תחושת ביטחון ואכפתיות. תודה רבה!</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> יצחק ירוחם, לוד
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">שירות מעולה נעזרתי בעת מעבר דירה. כל הרהיטים הורכבו ישר. וכל הקדיחות נעשו בצורה מקצועית מאד</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> ליאור, כפר סבא
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">מתן אלמגור הנדימן מקצועי איכותי ואמין ביותר ניסיתי לשלם לו קצת יותר והוא לא הסכים לקבל!! ממליץ בחום להשתמש בשירותים שלו!!</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> אליה סעדון, תל אביב
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">יצא לי להעזר במתן מספר פעמים השרות היה מכל הלב. ההרגשה שמתן נתן שבאמת אכפת לו והוא עושה כל מאמץ שהעבודה תעשה על הצד הטוב ביותר עם מחיר הגון ושרות מאיר פנים</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> עמיחי יובל
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="review-card-compact">
+                        <div>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">שירות מעולה, עבודה יסודית מא עד תיו. התקין מצלמת אבטחה ותיקן את השער בצורה מקצועית ויסודית. תודה🙏🏻</p>
+                        </div>
+                        <div class="review-author">
+                            <i class="fas fa-user-circle"></i> קרן, שערי תקווה
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn next-btn" onclick="handleBtnClick(1)"><i class="fas fa-chevron-left"></i></button>
+        </div>
+
+        <div class="dots-container" id="dotsContainer"></div>
+    </section>
+
     <section id="contact">
         <div class="contact-bar">
             <h2 style="margin-bottom: 10px;">מוכנים להתחיל?</h2>
@@ -441,11 +630,85 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>בונה רהיטים וגם אתרים ולכן כל הזכויות שמורות לי © 2026</p>
         <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.7;">שירות אמין | עבודה נקייה | מחיר הוגן</p>
     </footer>
+
+    <script>
+        let currentIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        // יצירת נקודות ניווט דינמיות
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if(i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                resetAutoPlay();
+                goToSlide(i);
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlider() {
+            slider.style.transform = `translateX(${currentIdx * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIdx);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentIdx += direction;
+            if (currentIdx < 0) currentIdx = slides.length - 1;
+            if (currentIdx >= slides.length) currentIdx = 0;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentIdx = index;
+            updateSlider();
+        }
+
+        // ניקוי ומניעת התנגשות בלחיצה ידנית על החיצים
+        function handleBtnClick(direction) {
+            resetAutoPlay();
+            moveSlide(direction);
+        }
+
+        // מנגנון ניגון אוטומטי (כל 5 שניות)
+        let autoPlayInterval = setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // תמיכה בהחלקת אצבע (Swipe) למובייל + עצירת אוטומציה בנגיעה
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const wrapper = document.querySelector('.slider-wrapper');
+        wrapper.addEventListener('touchstart', e => {
+            resetAutoPlay();
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        wrapper.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            if (touchStartX - touchEndX > 50) moveSlide(1);  // סוויפ שמאלה
+            if (touchEndX - touchStartX > 50) moveSlide(-1); // סוויפ ימינה
+        }
+    </script>
 
 </body>
 </html>
