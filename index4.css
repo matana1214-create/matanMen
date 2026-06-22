@@ -1,0 +1,591 @@
+:root {
+  --primary: #1e3a8a;
+  --secondary: #166534;
+  --accent: #f59e0b;
+  --bg-light: #f8fafc;
+  --white: #ffffff;
+  --text-main: #1e293b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Assistant", sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  scroll-behavior: smooth;
+}
+
+/* לוגו צף */
+#logo_div {
+  position: fixed;
+  top: 30px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}
+
+#logo_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#img_nose {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* באנר מילואימניק */
+.miluim-badge {
+  background: var(--secondary);
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30, 58, 138, 0.95) 0%,
+      rgba(15, 23, 42, 0.8) 100%
+    ),
+    url("https://images.unsplash.com/photo-1621905252507-b35239d33048?q=80&w=2070");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.hero-content p {
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  max-width: 800px;
+  margin: 0 auto 40px;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 16px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #000;
+}
+.btn-secondary {
+  background-color: #25d366;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 30px;
+  background: white;
+  margin: -40px auto 0;
+  position: relative;
+  z-index: 10;
+  width: 85%;
+  max-width: 1000px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+  text-align: center;
+}
+.stat-item h3 {
+  font-size: 2rem;
+  color: var(--primary);
+}
+.stat-item p {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+section {
+  padding: 80px 20px;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title h2 {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.section-title .underline {
+  width: 50px;
+  height: 4px;
+  background: var(--accent);
+  margin: 0 auto;
+}
+
+/* About Section */
+.about-flex {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1.2;
+  min-width: 300px;
+}
+.about-image {
+  flex: 0.8;
+  min-width: 300px;
+  height: 350px;
+  position: relative;
+}
+
+/* =========================================
+   NEW CATALOG SECTION (Services + Gallery)
+   ========================================= */
+.catalog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.catalog-card {
+  display: flex;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease;
+  height: 400px;
+}
+
+/* הפיכת הכרטיס במחשב */
+.reverse-card {
+  flex-direction: row-reverse;
+}
+
+.catalog-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+/* עטיפה לגלריה ולחצים */
+.gallery-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  min-width: 0;
+  width: 50%;
+}
+
+/* חצים לגלריה (מחשב) */
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.gallery-arrow:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.gallery-arrow.right-arrow {
+  right: 15px;
+}
+
+.gallery-arrow.left-arrow {
+  left: 15px;
+}
+
+/* אזור הגלריה הזזה בתוך הכרטיס */
+.catalog-gallery {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.catalog-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+/* הגדרות קשיחות לתמונה למניעת עיוותים וגדלים שונים */
+.catalog-gallery img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+  display: block;
+}
+
+/* חיווי "החלק שמאלה" קטן על התמונות */
+.swipe-hint {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.8;
+  z-index: 5;
+}
+
+/* אזור הטקסט של הכרטיס */
+.catalog-content {
+  flex: 1;
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.catalog-content h3 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.catalog-content h3 i {
+  color: var(--accent);
+}
+
+.catalog-content p {
+  color: #475569;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+.catalog-content ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.catalog-content li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-right: 25px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.catalog-content li::before {
+  content: "✓";
+  color: var(--secondary);
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+}
+
+/* כפתור ווסטאפ ספציפי לקטגוריה */
+.catalog-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.catalog-btn:hover {
+  background: #20ba56;
+  transform: scale(1.02);
+}
+
+/* Reviews Section - Slider Mode */
+.slider-wrapper {
+  position: relative;
+  max-width: 750px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 10px 50px;
+}
+
+.slider-container {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 10px 15px;
+}
+
+.review-card-compact {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border-right: 4px solid var(--accent);
+  text-align: right;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stars {
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.review-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.review-author {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  padding: 10px;
+  z-index: 5;
+}
+
+.slider-btn:hover {
+  opacity: 1;
+}
+.prev-btn {
+  right: 5px;
+}
+.next-btn {
+  left: 5px;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #cbd5e1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background: var(--accent);
+}
+
+/* Contact Bar */
+.contact-bar {
+  background: var(--white);
+  padding: 40px 20px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 850px;
+  margin: 40px auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+footer {
+  background: var(--primary);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 100px 20px 60px 20px;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto 0;
+    transform: none;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #logo_div {
+    width: 50px;
+    height: 50px;
+  }
+
+  .slider-wrapper {
+    padding: 10px 15px;
+  }
+  .slider-btn {
+    display: none;
+  }
+
+  /* התאמת קטלוג השירותים למובייל */
+  .catalog-container {
+    gap: 60px;
+  }
+
+  /* ביטול השורה ההפוכה וקביעת מבנה אחיד למובייל */
+  .catalog-card,
+  .catalog-card.reverse-card {
+    flex-direction: column-reverse !important;
+    height: auto;
+  }
+
+  /* כפיית הטקסט להיות למעלה */
+  .catalog-content {
+    width: 100%;
+    padding: 30px 20px;
+    order: 1;
+  }
+
+  /* כפיית הגלריה להיות למטה */
+  .gallery-container {
+    width: 100%;
+    height: 300px;
+    order: 0;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  /* תיקון עיקרי: גובה px מפורש - לא תלוי בגובה האב */
+  .catalog-gallery {
+    height: 300px;
+  }
+
+  /* תיקון עיקרי: גובה px מפורש על כל תמונה */
+  .catalog-gallery img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .catalog-btn {
+    width: 100%;
+  }
+}
